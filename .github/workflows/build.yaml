@@ -15,9 +15,9 @@ jobs:
       - name: Retrieve secret from Vault
         uses: hashicorp/vault-action@v2.4.0
         with:
-          url: https://gh-cei-vault.loca.lt
-          role: myproject-staging
+          url: https://siva-vault.vault.bd767f40-f5c9-49b7-8f9f-5b060e7238b7.aws.hashicorp.cloud:8200
+          role: ceidemo-staging
           method: jwt
           jwtGithubAudience: github-ci
-          secrets: secret/myproject/staging/db password
+          secrets: secret/ceidemo/staging/db password
           
