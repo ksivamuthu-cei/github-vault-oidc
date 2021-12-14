@@ -43,5 +43,5 @@ jobs:
           method: jwt
           namespace: admin
           jwtGithubAudience: ceidemo
-          secrets: secret/ceidemo/staging/db password
+          secrets: secret/data/ceidemo/staging/db password
           
