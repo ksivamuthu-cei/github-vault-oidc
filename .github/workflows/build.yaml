@@ -16,7 +16,8 @@ jobs:
         run: |
           OIDC_TOKEN=$(curl -sLS "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=o6s" -H "User-Agent: actions/oidc-client" -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN")
           JWT=$(echo $OIDC_TOKEN | jq -j '.value')
-          echo $JWT
+          echo $JWT > .secret
+          cat .secret
       - name: Retrieve secret from Vault
         uses: hashicorp/vault-action@v2.4.0
         with:
