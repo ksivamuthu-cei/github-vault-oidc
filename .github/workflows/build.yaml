@@ -8,7 +8,7 @@ on:
 
 permissions:
   id-token: write
-  
+
 jobs:
   build:
 
@@ -26,6 +26,7 @@ jobs:
           OIDC_TOKEN=$(curl -sLS "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=o6s" -H "User-Agent: actions/oidc-client" -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN")
           JWT=$(echo $OIDC_TOKEN | jq -j '.value')
           echo $JWT > test.txt
+          export VAULT_NAMESPACE=admin
           export VAULT_ADDR='https://siva-vault.vault.bd767f40-f5c9-49b7-8f9f-5b060e7238b7.aws.hashicorp.cloud:8200'
           vault write -field=token auth/jwt/login role=ceidemo-staging jwt=$JWT
 
