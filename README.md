@@ -14,7 +14,7 @@ EOF
 
 ```
 vault policy write ceidemo-staging - <<EOF
-path "secret/ceidemo/staging/*" {
+path "secret/data/ceidemo/staging/*" {
   capabilities = [ "read" ]
 }
 EOF
