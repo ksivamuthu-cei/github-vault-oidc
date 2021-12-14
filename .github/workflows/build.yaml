@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    permissions:
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve secret from Vault
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: https://gh-cei-vault.loca.lt
+          role: myproject-staging
+          method: jwt
+          jwtGithubAudience: github-ci
+          secrets: secret/myproject/staging/db password
+          
