@@ -13,28 +13,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    steps:
-      # - name: install vault
-      #   run: |
-      #      curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-      #      sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-      #      sudo apt-get update
-      #      sudo apt-get install vault -y
-
-      # - name: Get token and use the CLI
-      #   run: |
-      #     OIDC_TOKEN=$(curl -sLS "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=o6s" -H "User-Agent: actions/oidc-client" -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN")
-      #     JWT=$(echo $OIDC_TOKEN | jq -j '.value')
-      #     echo $JWT > test.txt
-      #     export VAULT_NAMESPACE=admin
-      #     export VAULT_ADDR='https://siva-vault.vault.bd767f40-f5c9-49b7-8f9f-5b060e7238b7.aws.hashicorp.cloud:8200'
-      #     vault write -field=token auth/jwt/login role=ceidemo-staging jwt=$JWT
-
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: my-artifact
-      #     path: ./test.txt          
-
+    steps:    
       - name: Retrieve secret from Vault
         uses: hashicorp/vault-action@v2.4.0
         with:
@@ -43,5 +22,4 @@ jobs:
           method: jwt
           namespace: admin
           jwtGithubAudience: ceidemo
-          secrets: secret/data/ceidemo/staging/db password
-          
+          secrets: secret/data/ceidemo/staging/db password        
